@@ -1,5 +1,6 @@
 class SubRedditsController < ApplicationController
   before_action :set_sub_reddit, only: [:show, :edit, :update, :destroy]
+  before_action :set_top_10_related_sub_reddits, only: [:index]
 
   # GET /sub_reddits
   # GET /sub_reddits.json
@@ -70,6 +71,13 @@ class SubRedditsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_sub_reddit
     @sub_reddit = SubReddit.find(params[:id])
+  end
+
+  def set_top_10_related_sub_reddits
+    @top_10_related_sub_reddits = RelatedSubReddit
+                                  .order(:weight => :desc)
+                                  .limit(10)
+                                  .all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
