@@ -20,6 +20,10 @@
   <%= @sub_reddit.bag_of_words %>
 </p>
 
+<p>
+  <strong>Latest Snapshot:</strong>
+  <%= @sub_reddit.updated_at %>
+</p>
 <table class ='table table-striped'>
   <thead>
     <tr>
@@ -33,14 +37,13 @@
     <tbody>
       <% @sub_reddit.related_sub_reddits.order(:weight).reverse.each do |related_sub_reddit| %>
         <tr>
-          <td><%= related_sub_reddit.sub_reddit.name %></td>
-          <!-- <td><%= related_sub_reddit.weight %></td> -->
+          <td><%= link_to related_sub_reddit.sub_reddit.name, related_sub_reddit.sub_reddit  %></td>
           <td><div class="progress">
               <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
               </div>
           </td>
-          <td><%= related_sub_reddit.sub_reddit_relation.name %></td>
-          <td><%= link_to 'Show', related_sub_reddit %></td>
+          <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation  %></td>
+          <!-- <td><%= link_to 'Show', related_sub_reddit %></td> -->
           <td><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></td>
           <td><%= link_to 'Destroy', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

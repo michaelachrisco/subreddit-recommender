@@ -42,20 +42,17 @@
     <tr>
       <th>Name</th>
       <th>Url</th>
-      <th>Document</th>
-      <th colspan="3"></th>
+      <!-- <th colspan="2"></th> -->
     </tr>
   </thead>
 
   <tbody>
     <% @sub_reddits.each do |sub_reddit| %>
       <tr>
-        <td><%= sub_reddit.name %></td>
+        <td><%= link_to sub_reddit.name, sub_reddit  %></td>
         <td><%= sub_reddit.url %></td>
-        <!-- <td><%= sub_reddit.document %></td> -->
-        <td><%= link_to 'Show', sub_reddit %></td>
-        <td><%= link_to 'Edit', edit_sub_reddit_path(sub_reddit) %></td>
-        <td><%= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_sub_reddit_path(sub_reddit), :class => 'btn btn-default' %>
+        <%= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -75,12 +72,12 @@
   <tbody>
     <% @top_10_related_sub_reddits.each do |related_sub_reddit| %>
       <tr>
-        <td><%= related_sub_reddit.sub_reddit.name %></td>
+        <td><%= link_to related_sub_reddit.sub_reddit.name, related_sub_reddit.sub_reddit  %></td>
         <td><div class="progress">
             <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
             </div>
         </td>
-        <td><%= related_sub_reddit.sub_reddit_relation.name %></td>
+        <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation  %></td>
       </tr>
     <% end %>
   </tbody>
