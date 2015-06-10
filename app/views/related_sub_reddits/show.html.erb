@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sub reddit:</strong>
+  <%= @related_sub_reddit.sub_reddit %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @related_sub_reddit.weight %>
+</p>
+
+<p>
+  <strong>Sub reddit relation:</strong>
+  <%= @related_sub_reddit.sub_reddit_relation %>
+</p>
+
+<%= link_to 'Edit', edit_related_sub_reddit_path(@related_sub_reddit) %> |
+<%= link_to 'Back', related_sub_reddits_path %>

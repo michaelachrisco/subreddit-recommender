@@ -1,0 +1,20 @@
+{
+  "name": "subreddit-relations",
+  "version": "0.0.0",
+  "homepage": "https://github.com/michaelachrisco/free_pizza",
+  "authors": [
+    "MichaelAChrisco <michaelachrisco@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-progressbar" : "git@github.com:minddust/bootstrap-progressbar.git"
+  }
+}

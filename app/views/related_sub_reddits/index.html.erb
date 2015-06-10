@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Related Sub Reddits</h1>
+
+<table class ='table table-striped'>
+  <thead>
+    <tr>
+      <th>Sub reddit</th>
+      <th>Weight</th>
+      <th>Sub reddit relation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @related_sub_reddits.each do |related_sub_reddit| %>
+      <tr>
+        <td><%= related_sub_reddit.sub_reddit.name %></td>
+        <td><%= related_sub_reddit.weight %></td>
+        <td><%= related_sub_reddit.sub_reddit_relation.name %></td>
+        <td><%= link_to 'Show', related_sub_reddit %></td>
+        <td><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></td>
+        <td><%= link_to 'Destroy', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Related sub reddit', new_related_sub_reddit_path %>
