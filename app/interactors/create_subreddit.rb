@@ -3,8 +3,8 @@ class CreateSubreddit
   before :document
 
   def call
-    object = SubReddit.find_or_create_by(name: context.sub_reddit.name)
-    object.save!
+    subreddit = SubReddit.find_or_create_by(name: context.sub_reddit.name)
+    subreddit.save!
     context.message = 'Subreddit created'
   end
 
