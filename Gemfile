@@ -7,6 +7,9 @@ gem 'interactor-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jit-rails'
 gem 'jquery-rails'
+gem 'jqcloud-rails',
+    git: 'git@github.com:michaelachrisco/jqcloud-rails.git',
+    branch: 'jqcloud-bump-version'
 gem 'matrix'
 gem 'pg'
 gem 'rails', '4.2.1'
@@ -19,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'similarity', git: 'git@github.com:bbcrd/Similarity.git'
 gem 'rb-gsl', '1.16.0.4'
 gem 'mysql2'
+# gem 'rsemantic'
 gem 'sqlite3'
 # gem 'tf-idf-similarity'
 gem 'turbolinks'

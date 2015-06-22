@@ -3,10 +3,10 @@ require 'ruby-progressbar'
 namespace :subreddits do
   desc 'Relates SubReddits'
   task relate: :environment do
-    subreddits = SubReddit.all.first(500)
+    subreddits = SubReddit.all.first(100)
     RelatedSubReddit.all.each(&:destroy)
     progress_bar = ProgressBar.create(title: 'subreddits:seed',
-                                      starting_at: 1,
+                                      starting_at: 0,
                                       # :total => csv.size,
                                       total: subreddits.size,
                                       format: '%a %e %P% Processed: %c from %C')

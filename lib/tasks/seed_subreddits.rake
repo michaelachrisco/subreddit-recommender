@@ -4,6 +4,8 @@ require 'ruby-progressbar'
 namespace :subreddits do
   desc 'Seeds SubReddits'
   task seed: :environment do
+    limit_size = 100
+
     SubReddit.all.each(&:destroy)
     RelatedSubReddit.all.each(&:destroy)
     require 'csv'
@@ -20,10 +22,10 @@ namespace :subreddits do
     # csv.first(20).each do |sub_reddit_sym|
     progress_bar = ProgressBar.create(title: 'subreddits:seed',
                                       starting_at: 0,
-                                      total: csv.size,
+                                      total: limit_size || csv.size ,
                                       # :total => 100,
                                       format: "%a %e %P% Processed: %c from %C #{message}")
-    csv.first(200).each do |sub_reddit_sym|
+    csv.first(limit_size).each do |sub_reddit_sym|
       url = "http://reddit.com/r/#{sub_reddit_sym}.json"
       sub_reddit = SubReddit.new(name: sub_reddit_sym.to_s.titleize, url: url)
       # puts sub_reddit.inspect
