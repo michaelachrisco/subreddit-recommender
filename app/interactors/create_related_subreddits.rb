@@ -9,7 +9,6 @@ class CreateRelatedSubreddits
   # before :compare_subreddits
 
   def call
-    # ap compare_subreddits
     compare_subreddits
     context.message = 'Related Sub Reddits Created'
   end
@@ -33,12 +32,17 @@ class CreateRelatedSubreddits
     subreddits.map do |reddit|
       collection_documents << Document.new(content: reddit.document, id: reddit.id)
     end
+    # ap collection_documents
+    collection_documents.map! do |document|
+      document unless document.content.delete(' ').empty?
+    end
+    collection_documents.select! { |x| !x.nil? }
 
     collection_documents.each { |doc| corpus << doc }
     corpus.similar_documents(collection_documents[0]).each do |doc, similarity|
       if collection_documents[0].id != doc.id
         RelatedSubReddit.create do |related_subreddit|
-          related_subreddit.sub_reddit_id =  collection_documents[0].id # Origin document
+          related_subreddit.sub_reddit_id =  collection_documents[0].id # Origin
           related_subreddit.sub_reddit_relation_id = doc.id                     # relational doc
           related_subreddit.weight = similarity # weight
         end

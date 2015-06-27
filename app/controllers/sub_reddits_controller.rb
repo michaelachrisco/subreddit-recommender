@@ -73,11 +73,14 @@ class SubRedditsController < ApplicationController
     @sub_reddit = SubReddit.find(params[:id])
   end
 
+  # Get 20 relations on subreddits and remove every other one.
   def set_top_10_related_sub_reddits
     @top_10_related_sub_reddits = RelatedSubReddit
-                                  .order(:weight => :desc)
-                                  .limit(10)
+                                  .order(weight: :desc)
+                                  .limit(20)
                                   .all
+                                  .to_a
+                                  .each_slice(2).map(&:last)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
