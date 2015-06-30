@@ -22,13 +22,13 @@ class CreateSubreddit
     # context.sub_reddit.document = bag.try(:descriptions_string_bag)
     # context.sub_reddit.bag_of_words = bag.try(:descriptions_bag)
     context.sub_reddit.document = bag.try(:titles_string_bag)
-    # context.sub_reddit.bag_of_words = bag.try(:titles_bag)
+    context.sub_reddit.bag_of_words = bag.try(:titles_bag)
   end
 
   def persist!
     return context.message = 'Empty subreddit' if \
     context.sub_reddit.document.empty?
-    # || context.sub_reddit.bag_of_words.empty?
+    || context.sub_reddit.bag_of_words.empty?
     context.sub_reddit.save!
   end
 end

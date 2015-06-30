@@ -6,8 +6,16 @@ GIT
       rb-gsl (>= 1.16.0)
 
 GIT
+  remote: git@github.com:michaelachrisco/jqcloud-rails.git
+  revision: a61f58e8ba48f2bd52b2d5fc0825ccaee7ba6739
+  branch: jqcloud-bump-version
+  specs:
+    jqcloud-rails (1.1.0)
+      jquery-rails
+
+GIT
   remote: git@github.com:michaelachrisco/reddit-bag-of-words.git
-  revision: 67ba48def34a50e23afdbb0aaa78d9ac4567aa20
+  revision: 3ee2ac16528a32fd8e9d664fb9bde5a4870deea9
   specs:
     reddit_bag_of_words (0.1.2)
       blanket_wrapper
@@ -160,7 +168,6 @@ GEM
     rb-gsl (1.16.0.4)
       narray (>= 0.5.9)
     rdoc (4.2.0)
-      json (~> 1.4)
     recursive-open-struct (0.6.4)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -238,6 +245,7 @@ DEPENDENCIES
   interactor-rails (~> 2.0)
   jbuilder (~> 2.0)
   jit-rails
+  jqcloud-rails!
   jquery-rails
   matrix
   mysql2
