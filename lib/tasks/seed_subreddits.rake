@@ -1,45 +1,48 @@
 require 'awesome_print'
 require 'ruby-progressbar'
+require 'thread/pool'
 
+# Change so that every 100 is put into the memory instead of active record.
 namespace :subreddits do
   desc 'Seeds SubReddits'
   task seed: :environment do
-    limit_size = 100
+    pool = Thread.pool(20)
 
     SubReddit.all.each(&:destroy)
     RelatedSubReddit.all.each(&:destroy)
     require 'csv'
     path = "#{Rails.root}/lib/tasks/all_subreddits.csv"
-    # ap path
+
     csv_text = File.read(path)
     csv = CSV.parse(csv_text, headers: false)
-    # ap csv
+    # limit_size = 5
+    limit_size = csv.size
+
+
     csv.map! do |_key, value|
       value.to_sym
     end
-    puts "#{csv.size} tables"
-    message = ''
-    # csv.first(20).each do |sub_reddit_sym|
+    p "#{csv.size} tables"
+    subreddits = []
+
     progress_bar = ProgressBar.create(title: 'subreddits:seed',
                                       starting_at: 0,
-                                      total: limit_size || csv.size ,
-                                      # :total => 100,
-                                      format: "%a %e %P% Processed: %c from %C #{message}")
+                                       total: limit_size,
+                                      format: '%a %e %P% Processed: %c from %C')
+
     csv.first(limit_size).each do |sub_reddit_sym|
+      pool.process do
       url = "http://reddit.com/r/#{sub_reddit_sym}.json"
       sub_reddit = SubReddit.new(name: sub_reddit_sym.to_s.titleize, url: url)
-      # puts sub_reddit.inspect
-      context = CreateSubreddit.call(sub_reddit: sub_reddit) rescue []
-      if context == []
-        puts = "#{sub_reddit_sym} FAIL"
-      else
-        message = context.message
-      end
-      # puts context.message unless context == []
-      # puts "#{sub_reddit_sym} FAIL" if context == []
-      # sub_reddit.save
+
+      context = BuildSubreddit.call(sub_reddit: sub_reddit)
+      subreddits << context.sub_reddit if context.success?
       progress_bar.increment
-      sleep(1.5)
+      end
     end
+
+    pool.shutdown
+    p 'saving'
+    subreddits.each(&:save!)
   end
 end

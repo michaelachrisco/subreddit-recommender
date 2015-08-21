@@ -1,43 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<!-- <body onload="init();">
-<div id="container">
-
-<div id="left-container">
-
-  <div class="text">
-  <h4>
-  Weighted Graph Animation
-  </h4>
-
-              A static JSON graph structure is used for this animation.<br /><br />
-              For each JSON node/edge the properties prefixed with the dollar sign ($) set the type of node/edge to be plotted, its style and its dimensions.<br /><br />
-              Line weights are added programmatically, <em>onBeforePlotLine</em>.<br /><br />
-              An <b>Elastic</b> transition is used instead of the linear transition for the animation.
-
-  </div>
-
-  <div id="id-list"></div>
-
-
-    <div style="text-align:center;"><a href="example2.code.html">See the Example Code</a></div>
-</div>
-
-<div id="center-container">
-    <div id="infovis"></div>
-</div>
-
-  <div id="right-container">
-
-  <div id="inner-details"></div>
-
-</div> -->
-
 <div id="log"></div>
 </div>
 <br>
+<!-- 
 <!-- <h1>Listing Sub Reddits</h1> -->
-<table class ='table table-striped'>
+<!-- <table class ='table table-striped'>
   <thead>
     <tr>
       <th>Name</th>
@@ -47,16 +15,17 @@
   </thead>
 
   <tbody>
-    <% @sub_reddits.each do |sub_reddit| %>
+    <%# @sub_reddits.each do |sub_reddit| %>
       <tr>
-        <td><%= link_to sub_reddit.name, sub_reddit  %></td>
-        <td><%= sub_reddit.url %></td>
-        <td><%= link_to 'Edit', edit_sub_reddit_path(sub_reddit), :class => 'btn btn-default' %>
-        <%= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        <td><%#= link_to sub_reddit.name, sub_reddit  %></td>
+        <td><%#= sub_reddit.url %></td>
+        <td><%#= link_to 'Edit', edit_sub_reddit_path(sub_reddit), :class => 'btn btn-default' %>
+        <%#= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
+-->
 
 <h4>Top 10 highest wieghted relations</h4>
 <table class ='table table-striped'>
