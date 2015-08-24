@@ -33,7 +33,6 @@ class BuildRelatedSubreddits
     end
 
     subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
-    # TODO: DO NOTHING IF FIRST
 
     collection_documents = []
 
@@ -43,7 +42,7 @@ class BuildRelatedSubreddits
     subreddits.map do |reddit|
       collection_documents << Document.new(content: reddit.document, id: reddit.id)
     end
-    # ap collection_documents
+
     collection_documents.map! do |document|
       document unless document.content.delete(' ').empty?
     end

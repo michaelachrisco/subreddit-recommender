@@ -9,18 +9,18 @@ namespace :subreddits do
     RelatedSubReddit.delete_all
 
     related_subreddits = []
-    # progress_bar = ProgressBar.create(title: 'subreddits:relate',
-    #                                   smoothing: 0.6,
-    #                                   starting_at: 0,
-    #                                   total: subreddits.size,
-                                      # format: "%a %e %P% Building: %c from %C")
+    progress_bar = ProgressBar.create(title: 'subreddits:relate',
+                                      smoothing: 0.6,
+                                      starting_at: 0,
+                                      total: subreddits.size,
+                                      format: "%a %e %P% Building: %c from %C")
 
     subreddits.each do |sub_reddit|
       p sub_reddit.name
       # pool.process do
         # context = BuildRelatedSubreddits.call(sub_reddit: sub_reddit, sub_reddits: subreddits)
         CreateRelatedSubreddits.call(sub_reddit: sub_reddit, sub_reddits: subreddits)
-        # progress_bar.increment
+        progress_bar.increment
         # related_subreddits << context.related_subreddits.flatten.each(&:save!)
       # end
     end
@@ -31,21 +31,18 @@ namespace :subreddits do
   desc 'Relates SubReddits via TFIDF'
   task relate_tfidf: :environment do
     pool = Thread.pool(1)
-    limit_size = 4
+    limit_size = 500
     subreddits = SubReddit.all.first(limit_size)
     RelatedSubReddit.delete_all
-
+    # total = (subreddits.size-1)*limit_size
     progress_bar = ProgressBar.create(title: 'subreddits:relate',
                                       smoothing: 0.6,
                                       starting_at: 0,
-                                      total: (subreddits.size-1)*100,
+                                      total: limit_size,
                                       format: "%a %e %P% Building: %c from %C")
-    increment = 0
-    total = (subreddits.size-1)*limit_size
     subreddits.each do |sub_reddit|
             TFIDFCreateRelatedSubreddits.call(sub_reddit: sub_reddit, sub_reddits: subreddits)
-          p "#{increment}:#{total}"
-          increment += 2
+    progress_bar.increment
     end
   end
 end

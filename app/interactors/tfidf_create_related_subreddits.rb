@@ -1,7 +1,6 @@
 # Given subreddit, find the closest matches to other subreddits
 # with a weight excluding itself
 # require 'similarity'
-require 'awesome_print'
 
 class TFIDFCreateRelatedSubreddits
   include Interactor
@@ -35,12 +34,8 @@ class TFIDFCreateRelatedSubreddits
 
 
     subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
-    ap "rejected_subreddit #{subreddits.size}"
 
     subreddits = [context.sub_reddit] + subreddits
-    ap "with self #{subreddits.size}"
-    ap subreddits.map(&:name)
-    p
 
     relation_hash = Hash.new
     iterator = 0
@@ -55,8 +50,6 @@ class TFIDFCreateRelatedSubreddits
 
     iterator = 0
     search.related(0).each do |related_element|
-      ap "iterator #{iterator}"
-      ap related_element
        if relation_hash[0] != relation_hash[iterator]
          RelatedSubReddit.create do |related_subreddit|
            related_subreddit.sub_reddit_id =  relation_hash[0] # Origin
@@ -64,7 +57,6 @@ class TFIDFCreateRelatedSubreddits
            related_subreddit.weight = related_element # weight
        end
       end
-      ap RelatedSubReddit.all.size
       iterator +=1
     end
   end

@@ -26,7 +26,7 @@ class CreateRelatedSubreddits
   # TODO: Refactor
   def compare_subreddits
     corpus = Corpus.new
-    #exclude already done subreddit relations
+    # exclude already done subreddit relations
     if context.sub_reddit.related_sub_reddits.empty?
       excluded_subreddits = SubReddit.all
     else
@@ -34,34 +34,26 @@ class CreateRelatedSubreddits
     end
 
     subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
-    # TODO: DO NOTHING IF FIRST
 
     collection_documents = []
 
     # initial document
     collection_documents << Document.new(content: context.sub_reddit.document, id: context.sub_reddit.id)
 
-
-    p "building docs"
     subreddits.map do |reddit|
       collection_documents << Document.new(content: reddit.bag_of_words.to_a.join(' '), id: reddit.id)
     end
-    p "built #{subreddits.size}"
 
     collection_documents.map! do |document|
       document unless document.content.delete(' ').empty?
     end
     collection_documents.select! { |x| !x.nil? }
 
-
-    p "Creating Related subreddits"
     collection_documents.each do |doc|
       corpus << doc
     end
-    p "simularity"
+
     corpus.similar_documents(collection_documents[0]).each do |doc, similarity|
-      p doc
-      p similarity
       if collection_documents[0].id != doc.id
         RelatedSubReddit.create do |related_subreddit|
           related_subreddit.sub_reddit_id =  collection_documents[0].id # Origin
