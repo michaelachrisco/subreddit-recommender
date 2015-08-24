@@ -8,8 +8,8 @@ namespace :subreddits do
   task seed: :environment do
     pool = Thread.pool(20)
 
-    SubReddit.all.each(&:destroy)
-    RelatedSubReddit.all.each(&:destroy)
+    SubReddit.delete_all
+    RelatedSubReddit.delete_all
     require 'csv'
     path = "#{Rails.root}/lib/tasks/all_subreddits.csv"
 
