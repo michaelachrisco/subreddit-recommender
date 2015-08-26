@@ -37,9 +37,9 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <% if @sub_reddit.related_sub_reddits.first && @sub_reddit.related_sub_reddits.count > 0 %>
+  <% if @sub_reddit.all_related_subreddit_relations.first && @sub_reddit.related_sub_reddits.count > 0 %>
     <tbody>
-      <% @sub_reddit.related_sub_reddits.order(:weight).reverse.each do |related_sub_reddit| %>
+      <% @sub_reddit.all_related_subreddit_relations.reverse.each do |related_sub_reddit| %>
         <tr>
           <td><%= link_to related_sub_reddit.sub_reddit.name, related_sub_reddit.sub_reddit  %></td>
           <td><div class="progress">

@@ -5,4 +5,8 @@ class SubReddit < ActiveRecord::Base
   def to_s
     name
   end
+
+  def all_related_subreddit_relations
+    (RelatedSubReddit.where(:sub_reddit_relation => self.id) + RelatedSubReddit.where(:sub_reddit => self.id)).sort_by(&:weight)
+  end
 end

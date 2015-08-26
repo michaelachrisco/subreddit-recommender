@@ -1,10 +1,10 @@
-class CreateSubreddit
+class BuildSubreddit
   include Interactor
   before :document
 
   def call
-    persist!
-    context.message = "#{context.sub_reddit.name} Subreddit created"
+    return context.fail!(message: 'subreddit empty') if empty?
+    context.message = "#{context.sub_reddit.name} Subreddit built"
   end
 
   def document
@@ -23,11 +23,6 @@ class CreateSubreddit
     # context.sub_reddit.bag_of_words = bag.try(:descriptions_bag)
     context.sub_reddit.document = bag.try(:titles_string_bag)
     context.sub_reddit.bag_of_words = bag.try(:titles_bag)
-  end
-
-  def persist!
-    return context.message = 'Empty subreddit' if empty?
-    context.sub_reddit.save!
   end
 
   def empty?

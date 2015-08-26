@@ -2,11 +2,10 @@
 # with a weight excluding itself
 require 'similarity'
 
-class CreateRelatedSubreddits
+class BuildRelatedSubreddits
   include Interactor
   before :check_sub_reddit
   before :check_sub_reddits
-  # before :compare_subreddits
 
   def call
     compare_subreddits
@@ -20,25 +19,20 @@ class CreateRelatedSubreddits
 
   def check_sub_reddits
     return if context.sub_reddits
-    context.fail!('Missing Subreddits')
+    context.fail!('Missing Subreddit')
   end
 
   # TODO: Refactor
   def compare_subreddits
     corpus = Corpus.new
     # exclude already done subreddit relations
-    all_possible_relations = RelatedSubReddit.all_relations(context.sub_reddit)
-    # exclude already done subreddit relations
-    if all_possible_relations.empty?
-      excluded_subreddits = context.sub_reddits
+    if context.sub_reddit.related_sub_reddits.empty?
+      excluded_subreddits = SubReddit.all
     else
-      excluded_subreddits = context.sub_reddits - all_possible_relations
+      excluded_subreddits = SubReddit.all - context.sub_reddit.related_sub_reddits.map(&:sub_reddit_relation)
     end
 
-
     subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
-
-    subreddits = [context.sub_reddit] + subreddits
 
     collection_documents = []
 
@@ -46,7 +40,7 @@ class CreateRelatedSubreddits
     collection_documents << Document.new(content: context.sub_reddit.document, id: context.sub_reddit.id)
 
     subreddits.map do |reddit|
-      collection_documents << Document.new(content: reddit.bag_of_words.to_a.join(' '), id: reddit.id)
+      collection_documents << Document.new(content: reddit.document, id: reddit.id)
     end
 
     collection_documents.map! do |document|
@@ -54,13 +48,11 @@ class CreateRelatedSubreddits
     end
     collection_documents.select! { |x| !x.nil? }
 
-    collection_documents.each do |doc|
-      corpus << doc
-    end
-
+    context.related_subreddits = []
+    collection_documents.each { |doc| corpus << doc }
     corpus.similar_documents(collection_documents[0]).each do |doc, similarity|
       if collection_documents[0].id != doc.id
-        RelatedSubReddit.create do |related_subreddit|
+        context.related_subreddits << RelatedSubReddit.new do |related_subreddit|
           related_subreddit.sub_reddit_id =  collection_documents[0].id # Origin
           related_subreddit.sub_reddit_relation_id = doc.id                     # relational doc
           related_subreddit.weight = similarity # weight
