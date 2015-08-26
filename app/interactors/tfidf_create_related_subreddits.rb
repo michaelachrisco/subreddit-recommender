@@ -2,6 +2,9 @@
 # with a weight excluding itself
 # require 'similarity'
 
+require "activerecord-import/base"
+ ActiveRecord::Import.require_adapter('postgresql')
+
 class TFIDFCreateRelatedSubreddits
   include Interactor
   before :check_sub_reddit
@@ -24,40 +27,45 @@ class TFIDFCreateRelatedSubreddits
 
   # TODO: Refactor
   def compare_subreddits
-    all_possible_relations = RelatedSubReddit.all_relations(context.sub_reddit)
-    # exclude already done subreddit relations
-    if all_possible_relations.empty?
-      excluded_subreddits = context.sub_reddits
-    else
-      excluded_subreddits = context.sub_reddits - all_possible_relations
-    end
-
-
-    subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
-
-    subreddits = [context.sub_reddit] + subreddits
 
     relation_hash = Hash.new
     iterator = 0
-    subreddits.each do |sub_reddit|
+    context.sub_reddits.each do |sub_reddit|
       relation_hash.merge!(iterator => sub_reddit.id)
       iterator +=1
     end
 
-    documents = excluded_subreddits.map(&:document)
+    documents = context.sub_reddits.map(&:document)
 
     search = RSemantic::Search.new(documents, :transforms => [:TFIDF])
 
-    iterator = 0
-    search.related(0).each do |related_element|
-       if relation_hash[0] != relation_hash[iterator]
-         RelatedSubReddit.create do |related_subreddit|
-           related_subreddit.sub_reddit_id =  relation_hash[0] # Origin
-           related_subreddit.sub_reddit_relation_id = relation_hash[iterator]                     # relational doc
-           related_subreddit.weight = related_element # weight
-       end
-      end
-      iterator +=1
+    inserts, sub_reddit_ids, weights, sub_reddit_relation_ids = [], [], [], []
+
+    progress_bar = ProgressBar.create(title: 'subreddits:relate',
+                                      smoothing: 0.6,
+                                      starting_at: 0,
+                                      total: context.sub_reddits.size,
+                                      format: "%a %e %P% Building: %c from %C")
+
+    context.sub_reddits.size.times do |number|
+        iterator = 0
+        search.related(number).each do |related_element|
+           if ((relation_hash[number] != relation_hash[iterator]) && number < iterator)
+             inserts << [relation_hash[number], related_element, relation_hash[iterator]]
+
+          #    inserts << RelatedSubReddit.new do |related_subreddit|
+          #      related_subreddit.sub_reddit_id =  relation_hash[number] # Origin
+          #      related_subreddit.sub_reddit_relation_id = relation_hash[iterator]                     # relational doc
+          #      related_subreddit.weight = related_element # weight
+          #  end
+          end
+          iterator +=1
+        end
+
+        RelatedSubReddit.import [:sub_reddit_id, :weight, :sub_reddit_relation_id], inserts
+        inserts = []
+
+        progress_bar.increment
     end
   end
 end

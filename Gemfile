@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'activerecord-import'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bower-rails', '~> 0.9.2'
 gem 'coffee-rails', '~> 4.1.0'
