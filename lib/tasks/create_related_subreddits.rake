@@ -4,34 +4,32 @@ require 'thread/pool'
 namespace :subreddits do
   desc 'Relates SubReddits via Simularity'
   task relate: :environment do
-    # pool = Thread.pool(2)
-    subreddits = SubReddit.all
+    pool = Thread.pool(2)
+    limit_size = 100
+    subreddits = SubReddit.all.first(limit_size)
     RelatedSubReddit.delete_all
 
     related_subreddits = []
     progress_bar = ProgressBar.create(title: 'subreddits:relate',
                                       smoothing: 0.6,
                                       starting_at: 0,
-                                      total: subreddits.size,
+                                      total: limit_size,
                                       format: "%a %e %P% Building: %c from %C")
 
     subreddits.each do |sub_reddit|
-      p sub_reddit.name
-      # pool.process do
-        # context = BuildRelatedSubreddits.call(sub_reddit: sub_reddit, sub_reddits: subreddits)
+      pool.process do
         CreateRelatedSubreddits.call(sub_reddit: sub_reddit, sub_reddits: subreddits)
         progress_bar.increment
-        # related_subreddits << context.related_subreddits.flatten.each(&:save!)
-      # end
+      end
     end
-    # pool.shutdown
+    pool.shutdown
 
   end
 # TODO: Create presentor for new relations. SubReddit.related_subreddits should return RelatedSubReddit.all_relations(SubReddit.find(id))
   desc 'Relates SubReddits via TFIDF'
   task relate_tfidf: :environment do
     pool = Thread.pool(1)
-    limit_size = 500
+    limit_size = 100
     subreddits = SubReddit.all.first(limit_size)
     RelatedSubReddit.delete_all
     # total = (subreddits.size-1)*limit_size

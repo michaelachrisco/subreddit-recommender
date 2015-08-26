@@ -20,20 +20,25 @@ class CreateRelatedSubreddits
 
   def check_sub_reddits
     return if context.sub_reddits
-    context.fail!('Missing Subreddit')
+    context.fail!('Missing Subreddits')
   end
 
   # TODO: Refactor
   def compare_subreddits
     corpus = Corpus.new
     # exclude already done subreddit relations
-    if context.sub_reddit.related_sub_reddits.empty?
-      excluded_subreddits = SubReddit.all
+    all_possible_relations = RelatedSubReddit.all_relations(context.sub_reddit)
+    # exclude already done subreddit relations
+    if all_possible_relations.empty?
+      excluded_subreddits = context.sub_reddits
     else
-      excluded_subreddits = SubReddit.all - context.sub_reddit.related_sub_reddits.map(&:sub_reddit_relation)
+      excluded_subreddits = context.sub_reddits - all_possible_relations
     end
 
+
     subreddits = excluded_subreddits.reject { |x| x.name == context.sub_reddit.name }
+
+    subreddits = [context.sub_reddit] + subreddits
 
     collection_documents = []
 

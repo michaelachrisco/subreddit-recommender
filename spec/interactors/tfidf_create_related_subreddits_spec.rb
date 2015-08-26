@@ -1,13 +1,13 @@
 require 'rails_helper'
 require 'awesome_print'
 
-RSpec.describe TFIDFBuildRelatedSubreddits, type: :interactor do
+RSpec.describe TFIDFCreateRelatedSubreddits, type: :interactor do
   let(:doc1) { create(:sub_reddit, :ask_reddit) }
   let(:doc2) { create(:sub_reddit, :programming) }
   let(:subreddits) { SubReddit.all }
 
-  subject(:context) do
-    TFIDFBuildRelatedSubreddits.call(sub_reddit: doc1, sub_reddits: subreddits)
+  subject(:interactor) do
+    TFIDFCreateRelatedSubreddits.call(sub_reddit: doc1, sub_reddits: subreddits)
   end
 
   context 'when the parameters are valid' do
@@ -15,7 +15,7 @@ RSpec.describe TFIDFBuildRelatedSubreddits, type: :interactor do
     let!(:doc2) { create(:sub_reddit, :programming) }
 
     let(:relations) do
-      context.related_subreddits.each.each(&:save!)
+      interactor.call
       RelatedSubReddit.all
     end
 
@@ -29,7 +29,7 @@ RSpec.describe TFIDFBuildRelatedSubreddits, type: :interactor do
     let!(:doc1) { create(:sub_reddit, :programming) }
 
     let(:relations) do
-      context.related_subreddits.each.each(&:save!)
+      interactor.call
       RelatedSubReddit.all
     end
 
