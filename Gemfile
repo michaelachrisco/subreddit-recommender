@@ -8,9 +8,9 @@ gem 'interactor-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jit-rails'
 gem 'jquery-rails'
-gem 'jqcloud-rails',
-    git: 'git@github.com:michaelachrisco/jqcloud-rails.git',
-    branch: 'jqcloud-bump-version'
+# gem 'jqcloud-rails',
+#     git: 'git@github.com:michaelachrisco/jqcloud-rails.git',
+#     branch: 'jqcloud-bump-version'
 gem 'matrix'
 gem 'pg'
 gem 'rails', '4.2.1'

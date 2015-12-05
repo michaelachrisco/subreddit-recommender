@@ -4,7 +4,7 @@ class RelatedSubRedditsController < ApplicationController
   # GET /related_sub_reddits
   # GET /related_sub_reddits.json
   def index
-    @related_sub_reddits = RelatedSubReddit.all
+    @related_sub_reddits = RelatedSubReddit.limit(20).all
   end
 
   # GET /related_sub_reddits/1

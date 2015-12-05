@@ -10,6 +10,7 @@
 /tmp/
 /db/sqlite
 /log/*
+/config/database.yml
 
 
 ## Specific to RubyMotion:

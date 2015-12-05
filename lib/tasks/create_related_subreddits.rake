@@ -5,7 +5,7 @@ namespace :subreddits do
   desc 'Relates SubReddits via Simularity'
   task relate: :environment do
     pool = Thread.pool(2)
-    limit_size = 250
+    limit_size = 100
     # subreddits = SubReddit.all.first(limit_size)
     subreddits = SubReddit.all.shuffle.first(limit_size)
     RelatedSubReddit.delete_all
