@@ -14,14 +14,6 @@ GIT
       rb-gsl
 
 GIT
-  remote: git@github.com:michaelachrisco/jqcloud-rails.git
-  revision: a61f58e8ba48f2bd52b2d5fc0825ccaee7ba6739
-  branch: jqcloud-bump-version
-  specs:
-    jqcloud-rails (1.1.0)
-      jquery-rails
-
-GIT
   remote: git@github.com:michaelachrisco/reddit-bag-of-words.git
   revision: 11ae343611e85d53d62959f39d886d234ba71a78
   specs:
@@ -254,7 +246,6 @@ DEPENDENCIES
   interactor-rails (~> 2.0)
   jbuilder (~> 2.0)
   jit-rails
-  jqcloud-rails!
   jquery-rails
   matrix
   pg

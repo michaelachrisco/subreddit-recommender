@@ -3,29 +3,27 @@
 <div id="log"></div>
 </div>
 <br>
-<!-- 
-<!-- <h1>Listing Sub Reddits</h1> -->
-<!-- <table class ='table table-striped'>
+<!-- <h1>Listing Sub Reddits</h1>
+<table class ='table table-striped'>
   <thead>
     <tr>
       <th>Name</th>
       <th>Url</th>
-      <!-- <th colspan="2"></th> -->
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <%# @sub_reddits.each do |sub_reddit| %>
+    <% @sub_reddits.each do |sub_reddit| %>
       <tr>
-        <td><%#= link_to sub_reddit.name, sub_reddit  %></td>
-        <td><%#= sub_reddit.url %></td>
-        <td><%#= link_to 'Edit', edit_sub_reddit_path(sub_reddit), :class => 'btn btn-default' %>
-        <%#= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        <td><%= link_to sub_reddit.name, sub_reddit  %></td>
+        <td><%= sub_reddit.url %></td>
+        <td><%= link_to 'Edit', edit_sub_reddit_path(sub_reddit), :class => 'btn btn-default' %>
+        <%= link_to 'Destroy', sub_reddit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
-    <%# end %>
+    <% end %>
   </tbody>
-</table>
--->
+</table> -->
 
 <h4>Top 10 highest wieghted relations</h4>
 <table class ='table table-striped'>

@@ -15,8 +15,8 @@ namespace :subreddits do
 
     csv_text = File.read(path)
     csv = CSV.parse(csv_text, headers: false)
-    # limit_size = 5
-    limit_size = csv.size
+    limit_size = 100
+    # limit_size = csv.size
 
 
     csv.map! do |_key, value|

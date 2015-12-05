@@ -11,24 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_150_609_213_522) do
-  create_table 'related_sub_reddits', force: :cascade do |t|
-    t.integer 'sub_reddit_id'
-    t.float 'weight'
-    t.integer 'sub_reddit_relation_id'
-    t.datetime 'created_at',             null: false
-    t.datetime 'updated_at',             null: false
+ActiveRecord::Schema.define(version: 20150609213522) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "related_sub_reddits", force: :cascade do |t|
+    t.integer  "sub_reddit_id"
+    t.float    "weight"
+    t.integer  "sub_reddit_relation_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index 'related_sub_reddits', ['sub_reddit_id'], name: 'index_related_sub_reddits_on_sub_reddit_id'
-  add_index 'related_sub_reddits', ['sub_reddit_relation_id'], name: 'index_related_sub_reddits_on_sub_reddit_relation_id'
+  add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id", using: :btree
+  add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id", using: :btree
 
-  create_table 'sub_reddits', force: :cascade do |t|
-    t.string 'name'
-    t.string 'url'
-    t.string 'document'
-    t.datetime 'created_at',   null: false
-    t.datetime 'updated_at',   null: false
-    t.text 'bag_of_words'
+  create_table "sub_reddits", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "document"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "bag_of_words"
   end
+
 end
