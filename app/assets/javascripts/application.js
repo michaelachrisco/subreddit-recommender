@@ -17,5 +17,4 @@
 //= require weighted_subreddits
 //= require bootstrap-sprockets
 //= require bootstrap-progressbar
-//= require jqcloud
 //= require_tree .
