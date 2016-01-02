@@ -29,6 +29,7 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'awesome_print'
   gem 'byebug'
   gem 'factory_girl'

@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150609213522) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "related_sub_reddits", force: :cascade do |t|
     t.integer  "sub_reddit_id"
     t.float    "weight"
@@ -24,8 +21,8 @@ ActiveRecord::Schema.define(version: 20150609213522) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id", using: :btree
-  add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id", using: :btree
+  add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id"
+  add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id"
 
   create_table "sub_reddits", force: :cascade do |t|
     t.string   "name"
