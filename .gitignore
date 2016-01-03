@@ -12,6 +12,7 @@
 /log/*
 /config/database*.yml
 *.*~
+/config/secrets.yml
 
 ## Specific to RubyMotion:
 .dat*
