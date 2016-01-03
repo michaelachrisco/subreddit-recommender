@@ -1,28 +1,9 @@
-== README
+== (Alpha) SubReddit Recommender
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is a relation engine based on SubReddit posts. Its used as a starting point for other applications to consume its relation data.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
+TODO:
+* install instructions
+* Rake tasks
 * Deployment instructions
-
 * ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
