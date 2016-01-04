@@ -11,6 +11,7 @@
 /db/sqlite
 /log/*
 /config/database*.yml
+/config/secrets*.yml
 *.*~
 
 ## Specific to RubyMotion:
