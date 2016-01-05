@@ -18,7 +18,7 @@ namespace :subreddits do
     limit_size = 1000
     # limit_size = csv.size
     
-    to_ignore = ['photos']
+    to_ignore = ['photos', 'hackers']
 
 
     csv.map! do |_key, value|
