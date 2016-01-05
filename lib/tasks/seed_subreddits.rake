@@ -34,7 +34,7 @@ namespace :subreddits do
 
     csv.first(limit_size).each do |sub_reddit_sym|
       #pool.process do
-      sub_reddit_name = sub_reddit_sym.to_s
+        sub_reddit_name = sub_reddit_sym.to_s
         url = "http://reddit.com/r/#{sub_reddit_sym}.json"
         if to_ignore.include?(sub_reddit_name)
           #p "ignoring #{sub_reddit_name}"
