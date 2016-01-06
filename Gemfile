@@ -36,6 +36,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-its'
   gem 'spring'
+  gem 'shoulda-matchers'
   gem 'web-console', '~> 2.0'
 end
 
