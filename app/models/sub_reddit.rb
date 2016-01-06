@@ -1,5 +1,6 @@
 class SubReddit < ActiveRecord::Base
   has_many :related_sub_reddits, dependent: :destroy
+  belongs_to :sub_reddit_report
   serialize :bag_of_words
 
   def to_s

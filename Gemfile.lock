@@ -205,6 +205,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (3.0.1)
+      activesupport (>= 4.0.0)
     spring (1.5.0)
     sprockets (3.5.1)
       concurrent-ruby (~> 1.0)
@@ -261,6 +263,7 @@ DEPENDENCIES
   ruby-progressbar
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   similarity!
   spring
   sqlite3
@@ -270,4 +273,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
