@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609213522) do
+ActiveRecord::Schema.define(version: 20160105204821) do
 
   create_table "related_sub_reddits", force: :cascade do |t|
     t.integer  "sub_reddit_id"
@@ -24,13 +24,22 @@ ActiveRecord::Schema.define(version: 20150609213522) do
   add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id"
   add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id"
 
+  create_table "sub_reddit_report", force: :cascade do |t|
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sub_reddits", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.string   "document"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.text     "bag_of_words"
+    t.integer  "sub_reddit_id"
   end
+
+  add_index "sub_reddits", ["sub_reddit_id"], name: "index_sub_reddits_on_sub_reddit_id"
 
 end
