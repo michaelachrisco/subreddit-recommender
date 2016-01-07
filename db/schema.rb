@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160105204821) do
   add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id"
   add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id"
 
-  create_table "sub_reddit_report", force: :cascade do |t|
+  create_table "sub_reddit_reports", force: :cascade do |t|
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20160105204821) do
     t.string   "name"
     t.string   "url"
     t.string   "document"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "bag_of_words"
-    t.integer  "sub_reddit_id"
+    t.integer  "sub_reddit_report_id"
   end
 
-  add_index "sub_reddits", ["sub_reddit_id"], name: "index_sub_reddits_on_sub_reddit_id"
+  add_index "sub_reddits", ["sub_reddit_report_id"], name: "index_sub_reddits_on_sub_reddit_report_id"
 
 end
