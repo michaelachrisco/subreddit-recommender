@@ -5,4 +5,5 @@
 ./setup-postgres.bash
 
 ./download-subreddit-recommender.bash
+./config.bash
 ./build-and-run-subreddit-recommender.bash
