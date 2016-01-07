@@ -9,7 +9,7 @@ chmod a+x ./config.bash
 chmod a+x ./build-and-run-subreddit-recommender.bash
 
 ./setup-subreddit-recommender-prereqs.bash
-./setup-git-hub.bash
+#./setup-git-hub.bash
 ./setup-postgres.bash
 
 ./download-subreddit-recommender.bash
