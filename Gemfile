@@ -13,7 +13,7 @@ gem 'jquery-rails'
 #     branch: 'jqcloud-bump-version'
 gem 'matrix'
 gem 'pg'
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.5'
 gem 'reddit_bag_of_words',
     github: 'michaelachrisco/reddit-bag-of-words'
 gem 'rspec-rails'

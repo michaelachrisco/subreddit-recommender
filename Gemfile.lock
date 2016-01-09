@@ -253,7 +253,7 @@ DEPENDENCIES
   matrix
   nokogiri (>= 1.6.7.1)
   pg
-  rails (4.2.2)
+  rails (= 4.2.5)
   rb-gsl (= 1.16.0.4)
   reddit_bag_of_words!
   rsemantic!
