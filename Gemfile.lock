@@ -251,7 +251,7 @@ DEPENDENCIES
   jit-rails
   jquery-rails
   matrix
-  nokogiri (>= 1.6.7.1)
+  nokogiri (= 1.6.7.1)
   pg
   rails (= 4.2.5)
   rb-gsl (= 1.16.0.4)
@@ -271,4 +271,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
