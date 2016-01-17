@@ -66,7 +66,7 @@
      var word_array =
        <%= raw @bag_of_words_word_list.to_json %>;
 
-     $(function() {
+     $(document).ready(function() {
        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
        $("#example").jQCloud(word_array);
      });
