@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/michaelachrisco/reddit-bag-of-words.git
-  revision: 11ae343611e85d53d62959f39d886d234ba71a78
+  revision: 39cdfaa5d9388f31c4cd2a16aaeedefd3d1b27e3
   specs:
     reddit_bag_of_words (0.1.2)
       blanket_wrapper
@@ -183,7 +183,7 @@ GEM
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.4.0)
+    rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-rails (3.4.0)
@@ -196,7 +196,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     ruby-progressbar (1.7.5)
-    sass (3.4.20)
+    sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
