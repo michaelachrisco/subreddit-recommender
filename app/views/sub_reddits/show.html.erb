@@ -1,62 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @sub_reddit.name %>
-</p>
+  <h2 class="page-header text-primary">
+    <strong>Subreddit Name:</strong>
+    <%= @sub_reddit.name %>
+  </h2>
 
-<p>
-  <strong>Url:</strong>
-  <%= @sub_reddit.url %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @sub_reddit.url %>
+  </p>
 
-<p>
-  <strong>Document:</strong>
-  <%= @sub_reddit.document %>
-</p>
+  <p>
+    <strong>Latest Snapshot:</strong>
+    <%= @sub_reddit.updated_at %>
+  </p>
 
-<p>
-  <strong>Bag of words:</strong>
-  <%= @sub_reddit.bag_of_words %>
-</p>
+  <p>
+    <strong>Document:</strong>
+    <%= @sub_reddit.document %>
+  </p>
+
+  <p>
+    <strong>Bag of words:</strong>
+    <%= @sub_reddit.bag_of_words %>
+  </p>
 
 
-<strong>Word Cloud:</strong>
-<div id="example" style="width: 700px; height: 350px"></div>
+  <strong>Word Cloud:</strong>
+  <div id="example" style="width: 700px; height: 350px"></div>
 
-<p>
-  <strong>Latest Snapshot:</strong>
-  <%= @sub_reddit.updated_at %>
-</p>
-<table class ='table table-striped'>
-  <thead>
-    <tr>
-      <th class='sub-reddit'>Sub reddit</th>
-      <th class='sub-reddit'>Weight</th>
-      <th class='sub-reddit'>Sub reddit relation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class='row'>
+    <div class='sub-reddit'><!-- col-xs-4 col-sm-6 col-md-7 col-lg-8--><strong>Suggested Subreddits</strong></div>
+    <div class='sub-reddit'><!-- col-xs-4 col-sm-4 col-md-3 col-lg-2--><strong>Relevance</strong></div>
+    <div><!-- class='col-xs-2 col-sm-1 col-md-1 col-lg-1'-->&nbsp;</div>
+    <div><!-- class='col-xs-2 col-sm-1 col-md-1 col-lg-1'-->&nbsp;</div>
+  </div>
+  
   <% if @sub_reddit.all_related_subreddit_relations.first && @sub_reddit.related_sub_reddits.count > 0 %>
-    <tbody>
       <% @sub_reddit.all_related_subreddit_relations.reverse.each do |related_sub_reddit| %>
-        <tr>
-          <td><%= link_to related_sub_reddit.sub_reddit.name, related_sub_reddit.sub_reddit  %></td>
-          <td><div class="progress">
+        <div class='row'>
+          <div><!-- class='col-xs-4 col-sm-6 col-md-7 col-lg-8'--><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation  %></div>
+          <div><!-- class='col-xs-4 col-sm-4 col-md-3 col-lg-2'-->
+            <div class="progress">
               <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
-              </div>
-          </td>
-          <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation  %></td>
-          <!-- <td><%= link_to 'Show', related_sub_reddit %></td> -->
-          <td><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></td>
-          <td><%= link_to 'Destroy', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+            </div>
+          </div>
+          <div><!-- class='col-xs-2 col-sm-1 col-md-1 col-lg-1'--><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></div>
+          <div><!-- class='col-xs-2 col-sm-1 col-md-1 col-lg-1'--><%= link_to 'Delete', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
   <% end %>
-<%= link_to 'Edit', edit_sub_reddit_path(@sub_reddit) %> |
-<%= link_to 'Back', sub_reddits_path %>
+  
+  <%= link_to 'Edit', edit_sub_reddit_path(@sub_reddit) %> |
+  <%= link_to 'Back', sub_reddits_path %>
+</div>
 
 <script type="text/javascript">
      // When DOM is ready...
