@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # mkdir /vagrant/repos
 # cd /vagrant/repos

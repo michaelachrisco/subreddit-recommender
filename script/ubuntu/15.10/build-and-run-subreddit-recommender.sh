@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cd /vagrant/
 bundle install --path ./vendor/bundle
