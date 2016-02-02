@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo apt-get --yes install synaptic git-daemon-sysvinit gitg
+sudo apt-get                          update
+sudo apt-get --yes                    install synaptic git-daemon-sysvinit gitg
 sudo apt-get --yes --install-suggests install nodejs
 sudo apt-get --yes --install-suggests install nodejs-legacy
 sudo apt-get --yes --install-suggests install npm ruby

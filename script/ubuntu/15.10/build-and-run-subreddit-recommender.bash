@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-cd ~/repos/git/michaelachrisco/subreddit-recommender/
-bundle install #--path vendor/bundle
+cd /vagrant/
+bundle install --path ./vendor/bundle
 rake bower:install
 rake --describe | more
 
