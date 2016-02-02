@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh 
 
 pushd /vagrant/config/
 cp database.yml.ig database.yml

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh 
 
 chmod a+x ./setup-subreddit-recommender-prereqs.sh
 chmod a+x ./setup-git-hub.sh

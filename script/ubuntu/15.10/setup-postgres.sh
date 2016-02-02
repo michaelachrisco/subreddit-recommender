@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh 
 
 sudo apt-get --yes --install-suggests install postgresql postgresql-contrib pgadmin3
 
