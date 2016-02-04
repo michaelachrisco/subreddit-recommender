@@ -72,7 +72,7 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get                          update
-    sudo apt-get --yes                    upgrade
+    sudo apt-get --yes                    dist-upgrade
     
     sudo apt-get --yes                    install synaptic git-daemon-sysvinit gitg
     sudo apt-get --yes --install-suggests install nodejs
