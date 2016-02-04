@@ -1,12 +1,11 @@
 #!/bin/sh 
 
-cd /vagrant/
-bundle install --path ./vendor/bundle
+cd ~/repos/git/michaelachrisco/
+bundle install --path vendor/bundle
 rake bower:install
-rake --describe | more
+#rake --describe | more
 
-rake db:setup
+rake db:reset
 rake subreddits:seed
 rake subreddits:relate
-#rake
 rails server

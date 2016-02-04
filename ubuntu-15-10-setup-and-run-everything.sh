@@ -1,8 +1,8 @@
 #!/bin/sh 
 
-pushd /vagrant/script/ubuntu/15.10/
+pushd ./script/ubuntu/15.10/
 
-chmod a+x ./setup-build-and-run-everything.sh
+#chmod a+x ./setup-build-and-run-everything.sh
 
 ./setup-build-and-run-everything.sh
 

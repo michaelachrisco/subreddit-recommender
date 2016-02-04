@@ -70,5 +70,35 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision :shell, path: "ubuntu-15-10-setup-and-run-everything.sh"
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get                          update
+    sudo apt-get --yes                    upgrade
+    
+    sudo apt-get --yes                    install synaptic git-daemon-sysvinit gitg
+    sudo apt-get --yes --install-suggests install nodejs
+    sudo apt-get --yes --install-suggests install nodejs-legacy
+    sudo apt-get --yes --install-suggests install npm ruby
+    sudo apt-get --yes --install-suggests install rails git git-hub libgsl0-dev libgsl0-dbg libpq-dev ruby-gsl node-lodash agrep sqlite3 libsqlite3-dev
+    
+    sudo apt-get --yes --install-suggests install postgresql postgresql-contrib pgadmin3
+
+    sudo npm install bower -g
+
+    echo "Setting postgres password for user postgres...."
+    sudo -u postgres psql --db=postgres --command="\password postgres"
+    sudo -u postgres createuser --superuser $USER
+    echo "Setting postgres password for user $USER...."
+    sudo -u postgres psql --command="\password $USER"
+
+    pushd /vagrant/config/
+    cp database.yml.ig database.yml
+    cp secrets.yml.ig secrets.yml
+    popd
+    
+    cd /vagrant/
+    bundle install --path vendor/bundle
+    rake bower:install
+    rake db:reset
+    rake --describe
+  SHELL
 end
