@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/usr/bin/env bash
 
 cd ~/repos/git/michaelachrisco/
 bundle install --path vendor/bundle
