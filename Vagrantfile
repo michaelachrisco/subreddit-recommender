@@ -85,11 +85,11 @@ Vagrant.configure(2) do |config|
 
     sudo npm install bower -g
 
-    echo "Setting postgres password for user postgres...."
-    sudo -u postgres psql --db=postgres --command="\password postgres"
+    # echo "Setting postgres password for user postgres...."
+    # sudo -u postgres psql --db=postgres --command="\password postgres"
     sudo -u postgres createuser --superuser $USER
-    echo "Setting postgres password for user $USER...."
-    sudo -u postgres psql --command="\password $USER"
+    # echo "Setting postgres password for user $USER...."
+    # sudo -u postgres psql --command="\password $USER"
 
     pushd /vagrant/config/
     cp database.yml.ig database.yml
