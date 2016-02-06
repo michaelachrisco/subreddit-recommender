@@ -78,7 +78,8 @@ Vagrant.configure(2) do |config|
     sudo apt-get --yes --install-suggests install nodejs
     sudo apt-get --yes --install-suggests install nodejs-legacy
     sudo apt-get --yes --install-suggests install npm ruby
-    sudo apt-get --yes --install-suggests install rails git git-hub libgsl0-dev libgsl0-dbg libpq-dev ruby-gsl node-lodash agrep sqlite3 libsqlite3-dev
+    sudo apt-get --yes --install-suggests install rails git libgsl0-dev libgsl0-dbg ruby-gsl node-lodash agrep sqlite3 libsqlite3-dev
+    sudo apt-get --yes                    install libpq-dev
     
     sudo apt-get --yes --install-suggests install postgresql postgresql-contrib pgadmin3
 
