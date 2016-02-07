@@ -74,7 +74,7 @@ Vagrant.configure(2) do |config|
     sudo apt-get                          update
     sudo apt-get --yes                    dist-upgrade
     
-    # sudo apt-get --yes                    install synaptic git-daemon-sysvinit gitg
+    sudo apt-get --yes                    install git-daemon-sysvinit     # synaptic gitg
     sudo apt-get --yes                    install nodejs
     sudo apt-get --yes                    install nodejs-legacy
     sudo apt-get --yes                    install npm ruby
@@ -85,11 +85,7 @@ Vagrant.configure(2) do |config|
 
     sudo npm install bower -g
 
-    # echo "Setting postgres password for user postgres...."
-    # sudo -u postgres psql --db=postgres --command="\password postgres"
-    sudo -u postgres createuser --superuser $USER
-    # echo "Setting postgres password for user $USER...."
-    # sudo -u postgres psql --command="\password $USER"
+    echo "CREATE ROLE vagrant WITH SUPERUSER LOGIN PASSWORD 'vagrant'" | sudo -u postgres psql --db=postgres
 
     pushd /vagrant/config/
     cp database.yml.ig database.yml
@@ -97,9 +93,9 @@ Vagrant.configure(2) do |config|
     popd
     
     cd /vagrant/
-    bundle install --path vendor/bundle
-    rake bower:install
-    rake db:reset
-    rake --describe
+    sudo -H -u vagrant bundle install --path vendor/bundle
+    sudo -H -u vagrant rake bower:install
+    sudo -H -u vagrant rake db:reset
+    sudo -H -u vagrant rake --describe
   SHELL
 end
