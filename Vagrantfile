@@ -87,15 +87,15 @@ Vagrant.configure(2) do |config|
 
     echo "CREATE ROLE vagrant WITH SUPERUSER LOGIN PASSWORD 'vagrant'" | sudo -u postgres psql --db=postgres
 
-    pushd /vagrant/config/
-    cp database.yml.ig database.yml
-    cp secrets.yml.ig secrets.yml
-    popd
+    # pushd /vagrant/config/
+    # cp database.yml.ig database.yml
+    # cp secrets.yml.ig secrets.yml
+    # popd
     
-    cd /vagrant/
-    sudo -H -u vagrant bundle install --path vendor/bundle
-    sudo -H -u vagrant rake bower:install
-    sudo -H -u vagrant rake db:reset
-    sudo -H -u vagrant rake --describe
+    # cd /vagrant/
+    # sudo -H -u vagrant bundle install --path vendor/bundle
+    # sudo -H -u vagrant rake bower:install
+    # sudo -H -u vagrant rake db:reset
+    # sudo -H -u vagrant rake --describe
   SHELL
 end
