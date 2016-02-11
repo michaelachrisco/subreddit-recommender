@@ -15,8 +15,10 @@ namespace :subreddits do
 
     csv_text = File.read(path)
     csv = CSV.parse(csv_text, headers: false)
-    limit_size = 1000
+    limit_size = 100
     # limit_size = csv.size
+    
+    to_ignore = ['photos', 'hackers']
 
 
     csv.map! do |_key, value|
@@ -25,20 +27,29 @@ namespace :subreddits do
     p "#{csv.size} tables"
     subreddits = []
 
-    progress_bar = ProgressBar.create(title: 'subreddits:seed',
-                                      starting_at: 0,
-                                       total: limit_size,
-                                      format: '%a %e %P% Processed: %c from %C')
+    #progress_bar = ProgressBar.create(title: 'subreddits:seed',
+    #                                  starting_at: 0,
+    #                                   total: limit_size,
+    #                                  format: '%a %e %P% Processed: %c from %C')
 
     csv.first(limit_size).each do |sub_reddit_sym|
-      pool.process do
-      url = "http://reddit.com/r/#{sub_reddit_sym}.json"
-      sub_reddit = SubReddit.new(name: sub_reddit_sym.to_s.titleize, url: url)
+      #pool.process do
+        sub_reddit_name = sub_reddit_sym.to_s
+        url = "http://reddit.com/r/#{sub_reddit_sym}.json"
+        if to_ignore.include?(sub_reddit_name)
+          #p "ignoring #{sub_reddit_name}"
+          p "ignoring #{url}"
+          #progress_bar.increment
+        else
+          p "getting  #{url}"
+          sub_reddit = SubReddit.new(name: sub_reddit_name.titleize, url: url)
 
-      context = BuildSubreddit.call(sub_reddit: sub_reddit)
-      subreddits << context.sub_reddit if context.success?
-      progress_bar.increment
-      end
+          context = BuildSubreddit.call(sub_reddit: sub_reddit)
+          subreddits << context.sub_reddit if context.success?
+          #progress_bar.increment
+          sleep Random.rand(2...5)
+        end
+      #end
     end
 
     pool.shutdown
