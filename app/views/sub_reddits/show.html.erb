@@ -1,73 +1,76 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @sub_reddit.name %>
-</p>
+  <h2 class="page-header text-primary">
+    <strong>Subreddit Name:</strong>
+    <%= @sub_reddit.name %>
+  </h2>
 
-<p>
-  <strong>Url:</strong>
-  <%= @sub_reddit.url %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @sub_reddit.url %>
+  </p>
 
-<p>
-  <strong>Document:</strong>
-  <%= @sub_reddit.document %>
-</p>
+  <p>
+    <strong>Latest Snapshot:</strong>
+    <%= @sub_reddit.updated_at %>
+  </p>
 
-<p>
-  <strong>Bag of words:</strong>
-  <%= @sub_reddit.bag_of_words %>
-</p>
+  <p>
+    <strong>Document:</strong>
+    <%= @sub_reddit.document %>
+  </p>
+
+  <p>
+    <strong>Bag of words:</strong>
+    <%= @sub_reddit.bag_of_words %>
+  </p>
 
 
-<strong>Word Cloud:</strong>
-<div id="example" style="width: 700px; height: 350px"></div>
+  <!-- <strong>Word Cloud:</strong>
+  <div id="example" style="width: 700px; height: 350px"></div> -->
 
-<p>
-  <strong>Latest Snapshot:</strong>
-  <%= @sub_reddit.updated_at %>
-</p>
-<table class ='table table-striped'>
-  <thead>
-    <tr>
-      <th class='sub-reddit'>Sub reddit</th>
-      <th class='sub-reddit'>Weight</th>
-      <th class='sub-reddit'>Sub reddit relation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <% if @sub_reddit.all_related_subreddit_relations.first && @sub_reddit.related_sub_reddits.count > 0 %>
-    <tbody>
-      <% @sub_reddit.all_related_subreddit_relations.reverse.each do |related_sub_reddit| %>
-        <tr>
-          <td><%= link_to related_sub_reddit.sub_reddit.name, related_sub_reddit.sub_reddit  %></td>
-          <td><div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
+  <table class='table table-striped table-hover'>
+    <thead>
+      <tr>
+        <th><!-- class='sub-reddit'--><strong>Suggested Subreddits</strong></th>
+        <th class='sub-reddit'><strong>Relevance</strong></th>
+        <th colspan="2">&nbsp;</th>
+      </tr>
+    </thead>
+  
+    <% if @sub_reddit.all_related_subreddit_relations.first && @sub_reddit.related_sub_reddits.count > 0 %>
+      <tbody>
+        <% @sub_reddit.all_related_subreddit_relations.reverse.each do |related_sub_reddit| %>
+          <tr>
+            <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation %></td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
               </div>
-          </td>
-          <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation  %></td>
-          <!-- <td><%= link_to 'Show', related_sub_reddit %></td> -->
-          <td><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></td>
-          <td><%= link_to 'Destroy', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
+            </td>
+            <td><%= link_to 'Edit', edit_related_sub_reddit_path(related_sub_reddit) %></td>
+            <td><%= link_to 'Delete', related_sub_reddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
   </table>
-  <% end %>
-<%= link_to 'Edit', edit_sub_reddit_path(@sub_reddit) %> |
-<%= link_to 'Back', sub_reddits_path %>
+  
+  <%= link_to 'Edit', edit_sub_reddit_path(@sub_reddit) %> |
+  <%= link_to 'Back', sub_reddits_path %>
+</div>
 
 <script type="text/javascript">
-     /*!
-      * Create an array of word objects, each representing a word in the cloud
-      */
+     // // When DOM is ready...
+     // $(document).ready(function() {
+     //   /*!
+     //    * Create an array of word objects, each representing a word in the cloud
+     //    */
+     //   var word_array =
+     //    <%= raw @bag_of_words_word_list.to_json %>;
 
-     var word_array =
-       <%= raw @bag_of_words_word_list.to_json %>;
-
-     $(function() {
-       // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
-       $("#example").jQCloud(word_array);
-     });
+     //   // Then select the container element and call the jQCloud method, passing the array of words as the first argument.
+     //   $("#example").jQCloud(word_array);
+     // });
 </script>
