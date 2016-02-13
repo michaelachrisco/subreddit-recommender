@@ -89,18 +89,13 @@ Vagrant.configure(2) do |config|
 
     sudo -i -u vagrant mkdir -p /home/vagrant/repos/git/michaelachrisco
     sudo -i -u vagrant git clone https://github.com/michaelachrisco/subreddit-recommender.git /home/vagrant/repos/git/michaelachrisco/subreddit-recommender
-    cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender
+    cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/
     ls -l
     git status
 
-    # pushd config
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml
-    # popd
     
-    sudo -i -u vagrant bundle install --path /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/vendor/bundle
-    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake bower:install
-    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake db:reset
-    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake --describe
+    echo "cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && bundle install --path vendor/bundle && rake bower:install && rake db:reset && rake --describe" | sudo -i -u vagrant
   SHELL
 end
