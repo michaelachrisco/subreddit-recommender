@@ -93,14 +93,14 @@ Vagrant.configure(2) do |config|
     ls -l
     git status
 
-    pushd config
-    sudo -i -u vagrant cp database.yml.ig database.yml
-    sudo -i -u vagrant cp secrets.yml.ig secrets.yml
-    popd
+    # pushd config
+    sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml
+    sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml
+    # popd
     
-    sudo -i -u vagrant bundle install --path vendor/bundle
-    sudo -i -u vagrant rake bower:install
-    sudo -i -u vagrant rake db:reset
-    sudo -i -u vagrant rake --describe
+    sudo -i -u vagrant bundle install --path /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/vendor/bundle
+    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake bower:install
+    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake db:reset
+    sudo -i -u vagrant cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && rake --describe
   SHELL
 end
