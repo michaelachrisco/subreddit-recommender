@@ -23,7 +23,7 @@ rake subreddits:relate_tfidf             # Relates SubReddits via TFIDF
 You can use Vagrant to spin up a virtual machine to run subreddit-recommender. To do this, simply:
 * Download and install VirtualBox from https://www.virtualbox.org/
 * Download and install Vagrant from https://www.vagrantup.com/
-* Download or clone this to a directory on your local machine
+* Download or clone this repo to a directory on your local machine
 * Open a Terminal or Command Prompt window in the above directory
 * Run the following command:
 
