@@ -37,7 +37,8 @@ group :development, :test do
   gem 'rspec-its'
   gem 'spring'
   gem 'shoulda-matchers'
-  gem 'web-console', '~> 2.0'
+  #gem 'web-console', '~> 2.0'
 end
+gem 'web-console', group: :development
 
 gem 'nokogiri', '1.6.7.1'
