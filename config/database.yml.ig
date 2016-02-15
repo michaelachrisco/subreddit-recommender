@@ -19,8 +19,9 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: db/sqlite/test.sqlite3
+  adapter: sqlite3
+  database: ":memory:"
+  timeout: 500
 
 production:
   <<: *default
