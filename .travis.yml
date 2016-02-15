@@ -1,10 +1,10 @@
 language: ruby
-sudo: false
+sudo: true
 rvm:
-- 1.9.3
-- '2.1'
 - '2.2'
 - ruby-head
+before script:
+  - echo apt-get install -qq --install-suggests install libgsl0-dev libgsl0-dbg
 script:
   - bundle exec rspec -fd
 matrix:
