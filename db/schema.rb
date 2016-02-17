@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160105204821) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "related_sub_reddits", force: :cascade do |t|
     t.integer  "sub_reddit_id"
     t.float    "weight"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160105204821) do
     t.integer  "sub_reddit_relation_id"
   end
 
-  add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id"
+  add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id", using: :btree
 
   create_table "sub_reddit_reports", force: :cascade do |t|
     t.string   "status"
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160105204821) do
     t.integer  "sub_reddit_report_id"
   end
 
-  add_index "sub_reddits", ["sub_reddit_report_id"], name: "index_sub_reddits_on_sub_reddit_report_id"
+  add_index "sub_reddits", ["sub_reddit_report_id"], name: "index_sub_reddits_on_sub_reddit_report_id", using: :btree
 
+  add_foreign_key "related_sub_reddits", "sub_reddits"
 end
