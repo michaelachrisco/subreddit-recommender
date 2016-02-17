@@ -16,13 +16,12 @@ ActiveRecord::Schema.define(version: 20160105204821) do
   create_table "related_sub_reddits", force: :cascade do |t|
     t.integer  "sub_reddit_id"
     t.float    "weight"
-    t.integer  "sub_reddit_relation_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "sub_reddit_relation_id"
   end
 
   add_index "related_sub_reddits", ["sub_reddit_id"], name: "index_related_sub_reddits_on_sub_reddit_id"
-  add_index "related_sub_reddits", ["sub_reddit_relation_id"], name: "index_related_sub_reddits_on_sub_reddit_relation_id"
 
   create_table "sub_reddit_reports", force: :cascade do |t|
     t.string   "status"
