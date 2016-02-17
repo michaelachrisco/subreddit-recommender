@@ -1,6 +1,6 @@
-class CreateSubRedditReport < ActiveRecord::Migration
+class CreateSubRedditReports < ActiveRecord::Migration
   def change
-    create_table :sub_reddit_report do |t|
+    create_table :sub_reddit_reports do |t|
       t.string :status
 
       t.timestamps null: false
