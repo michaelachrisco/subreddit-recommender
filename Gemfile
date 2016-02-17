@@ -38,6 +38,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   #gem 'web-console', '~> 2.0'
 end
-gem 'web-console', group: :development
+gem 'web-console', '~> 2.0', group: :development
 
 gem 'nokogiri', '1.6.7.1'
