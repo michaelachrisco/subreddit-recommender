@@ -87,15 +87,15 @@ Vagrant.configure(2) do |config|
 
     echo "CREATE ROLE vagrant WITH SUPERUSER LOGIN PASSWORD 'vagrant'" | sudo -u postgres psql --db=postgres
 
-    # pushd /vagrant/config/
-    # cp database.yml.ig database.yml
-    # cp secrets.yml.ig secrets.yml
-    # popd
+    sudo -i -u vagrant mkdir -p /home/vagrant/repos/git/michaelachrisco
+    sudo -i -u vagrant git clone https://github.com/michaelachrisco/subreddit-recommender.git /home/vagrant/repos/git/michaelachrisco/subreddit-recommender
+    cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/
+    ls -l
+    git status
+
+    sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml
+    sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml
     
-    # cd /vagrant/
-    # sudo -H -u vagrant bundle install --path vendor/bundle
-    # sudo -H -u vagrant rake bower:install
-    # sudo -H -u vagrant rake db:reset
-    # sudo -H -u vagrant rake --describe
+    echo "cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && bundle install --path vendor/bundle && rake bower:install && rake db:reset && rake --describe" | sudo -i -u vagrant
   SHELL
 end

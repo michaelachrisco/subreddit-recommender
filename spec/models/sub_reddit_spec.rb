@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe SubReddit, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+    it { should have_many(:related_sub_reddits) }
+    it { should belong_to(:sub_reddit_report) }
 end

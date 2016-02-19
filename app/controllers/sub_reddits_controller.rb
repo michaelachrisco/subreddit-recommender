@@ -1,7 +1,6 @@
 class SubRedditsController < ApplicationController
   before_action :set_sub_reddit, only: [:show, :edit, :update, :destroy]
   before_action :set_top_10_related_sub_reddits, only: [:index]
-  before_action :set_bag_of_words_word_list, only: [:show]
 
   # GET /sub_reddits
   # GET /sub_reddits.json
@@ -88,12 +87,4 @@ class SubRedditsController < ApplicationController
   def sub_reddit_params
     params.require(:sub_reddit).permit(:name, :url, :document, :bag_of_words)
   end
-
-  def set_bag_of_words_word_list
-    @bag_of_words_word_list = []
-    @sub_reddit.bag_of_words.each_pair.to_h.each do |key, value|
-      @bag_of_words_word_list << { text: key.to_s, wieght: value.to_i } if value > 1
-    end
-    @bag_of_words_word_list
-    end
 end

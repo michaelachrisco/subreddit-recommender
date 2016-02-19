@@ -14,8 +14,7 @@ gem 'jquery-rails'
 gem 'matrix'
 gem 'pg'
 gem 'rails', '4.2.5'
-gem 'reddit_bag_of_words',
-    github: 'michaelachrisco/reddit-bag-of-words'
+gem 'reddit_bag_of_words'
 gem 'rspec-rails'
 gem 'ruby-progressbar'
 gem 'sass-rails', '~> 5.0'
@@ -36,7 +35,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-its'
   gem 'spring'
-  gem 'web-console', '~> 2.0'
+  gem 'shoulda-matchers'
+  #gem 'web-console', '~> 2.0'
 end
+gem 'web-console', '~> 2.0', group: :development
 
 gem 'nokogiri', '1.6.7.1'

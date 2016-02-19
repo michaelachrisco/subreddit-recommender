@@ -8,8 +8,6 @@ namespace :subreddits do
   task seed: :environment do
     pool = Thread.pool(20)
 
-    SubReddit.delete_all
-    RelatedSubReddit.delete_all
     require 'csv'
     path = "#{Rails.root}/lib/tasks/all_subreddits.csv"
 
@@ -32,17 +30,17 @@ namespace :subreddits do
     #                                   total: limit_size,
     #                                  format: '%a %e %P% Processed: %c from %C')
 
+    report = SubRedditReport.create(status: :start);
     csv.first(limit_size).each do |sub_reddit_sym|
       #pool.process do
         sub_reddit_name = sub_reddit_sym.to_s
         url = "http://reddit.com/r/#{sub_reddit_sym}.json"
         if to_ignore.include?(sub_reddit_name)
-          #p "ignoring #{sub_reddit_name}"
           p "ignoring #{url}"
           #progress_bar.increment
         else
-          p "getting  #{url}"
-          sub_reddit = SubReddit.new(name: sub_reddit_name.titleize, url: url)
+          p "getting #{url}"
+          sub_reddit = SubReddit.new(name: sub_reddit_name.titleize, url: url, sub_reddit_report_id: report.id)
 
           context = BuildSubreddit.call(sub_reddit: sub_reddit)
           subreddits << context.sub_reddit if context.success?
@@ -55,5 +53,6 @@ namespace :subreddits do
     pool.shutdown
     p 'saving'
     subreddits.each(&:save!)
+    report.update(status: :seeded)
   end
 end
