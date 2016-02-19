@@ -46,7 +46,7 @@ class CreateRelatedSubreddits
     collection_documents << Document.new(content: context.sub_reddit.document, id: context.sub_reddit.id)
 
     subreddits.map do |reddit|
-      collection_documents << Document.new(content: reddit.bag_of_words.to_a.join(' '), id: reddit.id)
+      collection_documents << Document.new(content: reddit.sub_reddit.document, id: reddit.id)
     end
 
     collection_documents.map! do |document|

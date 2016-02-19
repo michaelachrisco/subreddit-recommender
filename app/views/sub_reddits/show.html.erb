@@ -38,12 +38,17 @@
         <th colspan="2">&nbsp;</th>
       </tr>
     </thead>
-  
+
     <% if @sub_reddit.all_related_subreddit_relations.first && @sub_reddit.related_sub_reddits.count > 0 %>
       <tbody>
         <% @sub_reddit.all_related_subreddit_relations.reverse.each do |related_sub_reddit| %>
           <tr>
+    <% if @sub_reddit.id != related_sub_reddit.sub_reddit_relation.id %>
             <td><%= link_to related_sub_reddit.sub_reddit_relation.name, related_sub_reddit.sub_reddit_relation %></td>
+    <% end %>
+    <% if @sub_reddit.id == related_sub_reddit.sub_reddit_relation.id %>
+            <td><%= link_to related_sub_reddit.sub_reddit , related_sub_reddit.sub_reddit %></td>
+    <% end %>
             <td>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" data-transitiongoal="<%= related_sub_reddit.weight*100 %>"></div>
@@ -56,7 +61,7 @@
       </tbody>
     <% end %>
   </table>
-  
+
   <%= link_to 'Edit', edit_sub_reddit_path(@sub_reddit) %> |
   <%= link_to 'Back', sub_reddits_path %>
 </div>
