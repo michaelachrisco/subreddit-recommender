@@ -13,7 +13,7 @@ namespace :subreddits do
 
     csv_text = File.read(path)
     csv = CSV.parse(csv_text, headers: false)
-    limit_size = 100
+    limit_size = 1500
     # limit_size = csv.size
 
 
