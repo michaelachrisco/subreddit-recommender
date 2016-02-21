@@ -7,5 +7,5 @@ rake bower:install
 
 rake db:reset
 rake subreddits:seed
-rake subreddits:relate
+rake subreddits:relate_tfidf
 rails server
