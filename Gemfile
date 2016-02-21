@@ -13,7 +13,7 @@ gem 'jquery-rails'
 #     branch: 'jqcloud-bump-version'
 gem 'matrix'
 gem 'pg'
-gem 'rails', '4.2.5'
+gem 'rails', '~> 4.2.5.1'
 gem 'reddit_bag_of_words'
 gem 'rspec-rails'
 gem 'ruby-progressbar'
@@ -40,4 +40,4 @@ group :development, :test do
 end
 gem 'web-console', '~> 2.0', group: :development
 
-gem 'nokogiri', '1.6.7.1'
+gem 'nokogiri', '>= 1.6.7.2'
