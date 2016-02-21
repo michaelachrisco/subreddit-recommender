@@ -10,10 +10,13 @@ default: &default
   timeout: 5000
   username: root
 
-#development:
-#  <<: *default
-#  database: db/sqlite/development.sqlite3
-#  # database: ":memory:"
+development:
+  adapter: postgresql
+  database: development
+  # username: stephengtuggy
+  # <<: *default
+  # database: db/sqlite/development.sqlite3
+  # database: ":memory:"
 
 test:
   adapter: postgresql
