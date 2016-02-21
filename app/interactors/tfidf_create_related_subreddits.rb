@@ -63,12 +63,14 @@ class TFIDFCreateRelatedSubreddits
             end
             iterator +=1
           end
+        end
+
 
         RelatedSubReddit.import [:sub_reddit_id, :weight, :sub_reddit_relation_id], inserts
         inserts = []
 
         progress_bar.increment
-      end
+      # end
     end
   end
 end
