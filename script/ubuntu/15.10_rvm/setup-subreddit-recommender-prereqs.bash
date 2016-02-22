@@ -39,6 +39,9 @@ sudo apt-get --yes install git-daemon-sysvinit \
                            bison \
                            subversion \
                            pkg-config \
+                           libgsl0-dev \
+                           libgsl0-dbg \
+                           libpq-dev \
                            sqlite3 \
                            libsqlite3-dev
 
