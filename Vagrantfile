@@ -107,6 +107,8 @@ Vagrant.configure(2) do |config|
 
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml
+
+    export RAILS_ENV=development
     
     echo "cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && bundle install --path vendor/bundle && bundle exec rake bower:install && bundle exec rake db:reset && bundle exec rake --describe" | sudo -i -u vagrant
   SHELL
