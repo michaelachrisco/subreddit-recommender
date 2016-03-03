@@ -71,17 +71,33 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get                          update
-    sudo apt-get --yes                    dist-upgrade
+    sudo apt-get       update
+    sudo apt-get --yes dist-upgrade
     
-    sudo apt-get --yes                    install git-daemon-sysvinit     # synaptic gitg
-    sudo apt-get --yes                    install nodejs
-    sudo apt-get --yes                    install nodejs-legacy
-    sudo apt-get --yes                    install npm ruby
-    sudo apt-get --yes                    install rails git libgsl0-dev libgsl0-dbg ruby-gsl node-lodash agrep sqlite3 libsqlite3-dev
-    sudo apt-get --yes                    install libpq-dev
-    
-    sudo apt-get --yes                    install postgresql postgresql-contrib pgadmin3
+    sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+    . /etc/default/locale
+
+    # Installing git-daemon-sysvinit installs git as well,
+    # so the second line really isn't necessary.
+    sudo apt-get --yes install git-daemon-sysvinit \
+                               git \
+                               nodejs \
+                               nodejs-legacy \
+                               npm \
+                               ruby \
+                               ruby2.2 \
+                               rails \
+                               libgsl0-dev \
+                               libgsl0-dbg \
+                               ruby-gsl \
+                               node-lodash \
+                               agrep \
+                               sqlite3 \
+                               libsqlite3-dev \
+                               libpq-dev \
+                               postgresql \
+                               postgresql-contrib \
+                               pgadmin3
 
     sudo npm install bower -g
 
@@ -95,7 +111,7 @@ Vagrant.configure(2) do |config|
 
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/database.yml
     sudo -i -u vagrant cp /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml.ig /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/config/secrets.yml
-    
-    echo "cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && bundle install --path vendor/bundle && rake bower:install && rake db:reset && rake --describe" | sudo -i -u vagrant
+
+    echo "cd /home/vagrant/repos/git/michaelachrisco/subreddit-recommender/ && bundle install --path vendor/bundle && bundle exec rake bower:install && bundle exec rake --describe" | sudo -i -u vagrant
   SHELL
 end
