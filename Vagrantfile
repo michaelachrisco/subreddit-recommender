@@ -74,7 +74,11 @@ Vagrant.configure(2) do |config|
     sudo apt-get       update
     sudo apt-get --yes dist-upgrade
     
-    # Installing git-daemon-sysvinit installs git as well.
+    sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+    . /etc/default/locale
+
+    # Installing git-daemon-sysvinit installs git as well,
+    # so the second line really isn't necessary.
     sudo apt-get --yes install git-daemon-sysvinit \
                                git \
                                nodejs \
@@ -96,9 +100,6 @@ Vagrant.configure(2) do |config|
                                pgadmin3
 
     sudo npm install bower -g
-
-    sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
-    . /etc/default/locale
 
     echo "CREATE ROLE vagrant WITH SUPERUSER LOGIN PASSWORD 'vagrant'" | sudo -u postgres psql --db=postgres
 
