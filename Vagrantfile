@@ -97,6 +97,9 @@ Vagrant.configure(2) do |config|
 
     sudo npm install bower -g
 
+    sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+    . /etc/default/locale
+
     echo "CREATE ROLE vagrant WITH SUPERUSER LOGIN PASSWORD 'vagrant'" | sudo -u postgres psql --db=postgres
 
     sudo -i -u vagrant mkdir -p /home/vagrant/repos/git/michaelachrisco
