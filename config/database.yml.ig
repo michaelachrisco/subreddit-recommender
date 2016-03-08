@@ -13,7 +13,6 @@ default: &default
 development:
   adapter: postgresql
   database: development
-  # username: stephengtuggy
   # <<: *default
   # database: db/sqlite/development.sqlite3
   # database: ":memory:"

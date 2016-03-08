@@ -2,10 +2,10 @@
 
 cd ~/repos/git/michaelachrisco/subreddit-recommender/
 bundle install --path vendor/bundle
-rake bower:install
+bundle exec rake bower:install
 #rake --describe | more
 
-rake db:reset
-rake subreddits:seed
-rake subreddits:relate
-rails server
+bundle exec rake db:reset
+bundle exec rake subreddits:seed
+bundle exec rake subreddits:relate_tfidf
+bundle exec rails server
