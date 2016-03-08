@@ -20,7 +20,6 @@ development:
 test:
   adapter: postgresql
   database: travis_ci_test
-  username: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
