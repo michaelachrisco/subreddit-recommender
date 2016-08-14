@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./setup-subreddit-recommender-prereqs.sh
+./setup-prereqs.sh
 # ./setup-git-hub.sh
 ./setup-postgres.sh
 
