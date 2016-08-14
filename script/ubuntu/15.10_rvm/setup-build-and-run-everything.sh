@@ -69,7 +69,7 @@ echo "Setting postgres password for user $USER...."
 sudo -u postgres psql --command="\password $USER"
 
 # Copy .yml files, set RAILS_ENV....
-pushd ~/repos/git/michaelachrisco/subreddit-recommender/config/
+pushd ~/repos/GitHub/michaelachrisco/subreddit-recommender/config/
 cp database.yml.ig database.yml
 cp secrets.yml.ig secrets.yml
 popd
@@ -77,7 +77,7 @@ popd
 export RAILS_ENV=development
 
 # Run initial rake tasks....
-cd ~/repos/git/michaelachrisco/subreddit-recommender/
+cd ~/repos/GitHub/michaelachrisco/subreddit-recommender/
 bundle install --path vendor/bundle
 bundle exec rake bower:install
 bundle exec rake db:reset
@@ -88,3 +88,4 @@ bundle exec rake subreddits:relate_tfidf
 
 # Start rails server....
 bundle exec rails server
+
