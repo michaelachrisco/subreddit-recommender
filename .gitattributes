@@ -1,0 +1,27 @@
+.git*   eol=lf
+*.rb    eol=lf
+*.js    eol=lf
+*.css   eol=lf
+*.scss  eol=lf
+*.rake  eol=lf
+*.yml   eol=lf
+*.ig    eol=lf
+*.json  eol=lf
+*.txt   eol=lf
+*.md    eol=lf
+*.bash  eol=lf
+*.sh    eol=lf
+*.less  eol=lf
+LICENSE eol=lf
+*.bowerrc   eol=lf
+*.html  eol=lf
+config.ru   eol=lf
+.rspec  eol=lf
+Bowerfile   eol=lf
+Gemfile eol=lf
+Gemfile.lock    eol=lf
+Rakefile    eol=lf
+Vagrantfile eol=lf
+*.erb   eol=lf
+*.jbuilder  eol=lf
+
