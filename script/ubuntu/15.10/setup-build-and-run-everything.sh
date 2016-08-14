@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-./setup-subreddit-recommender-prereqs.bash
-# ./setup-git-hub.bash
-./setup-postgres.bash
+./setup-subreddit-recommender-prereqs.sh
+# ./setup-git-hub.sh
+./setup-postgres.sh
 
-./download-subreddit-recommender.bash
-./config.bash
+./download-subreddit-recommender.sh
+./config.sh
 
 export RAILS_ENV=development
 
-./build-and-run-subreddit-recommender.bash
+./build-and-run-subreddit-recommender.sh
+

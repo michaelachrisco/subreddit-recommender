@@ -2,20 +2,22 @@
 
 sudo apt-get --yes install git-daemon-sysvinit \
                            git \
-                           nodejs \
-                           nodejs-legacy \
-                           npm \
                            ruby \
-                           ruby2.2 \
                            rails \
-                           libgsl0-dev \
-                           libgsl0-dbg \
+                           libgsl-dev \
+                           libgsl-dbg \
                            ruby-gsl \
-                           node-lodash \
                            agrep \
                            sqlite3 \
                            libsqlite3-dev \
                            libpq-dev
+
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get --yes install nodejs
+
+sudo npm install -g npm@3
+
+sudo apt-get --yes install node-lodash
                                
-sudo npm install bower -g
+sudo npm install -g bower
 
