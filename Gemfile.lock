@@ -157,7 +157,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.2.2)
-    rb-gsl (1.16.0.4)
+    rb-gsl (1.16.0.6)
       narray (>= 0.5.9)
     rdoc (4.2.2)
       json (~> 1.4)
@@ -245,6 +245,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   factory_girl
   factory_girl_rails
+  gsl
   interactor-rails (~> 2.0)
   jbuilder (~> 2.0)
   jit-rails
@@ -253,7 +254,7 @@ DEPENDENCIES
   nokogiri (>= 1.6.8)
   pg
   rails (~> 4.2.7.1)
-  rb-gsl (= 1.16.0.4)
+  rb-gsl (= 1.16.0.6)
   reddit_bag_of_words
   rsemantic!
   rspec-its

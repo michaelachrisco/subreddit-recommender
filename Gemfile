@@ -21,7 +21,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'similarity', github: 'bbcrd/Similarity'
 gem 'thread'
-gem 'rb-gsl', '1.16.0.4'
+gem 'rb-gsl', '1.16.0.6'
 gem 'rsemantic', :github => 'josephwilk/rsemantic'
 # gem 'tf-idf-similarity'
 gem 'turbolinks'
