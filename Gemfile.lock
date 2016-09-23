@@ -90,7 +90,7 @@ GEM
     fast-stemmer (1.0.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    hashie (3.4.4)
+    hashie (3.4.6)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httparty (0.14.0)
